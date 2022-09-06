@@ -1,0 +1,182 @@
+body {
+  /* background-color: rgba(11, 82, 11, 0.893); */
+  background-image: linear-gradient(to right, rgba(8, 30, 8, 0.893), rgba(60, 179, 60, 0.93));
+  color: black;
+}
+
+.container-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitulo {
+  color: rgb(73, 8, 8);
+  text-shadow: #ff4444;
+
+}
+
+
+
+#juegos {
+  display: flex;
+  justify-content:space-evenly
+  
+}
+
+#juego1 {
+  margin-left: 50px;
+
+}
+
+#ruleta {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+
+}
+
+#ruleta img {
+  display: flex;
+  align-items: center;
+  border-radius: 50% 50% 50% 50%;
+}
+
+#giraRuleta {
+  display: flex;
+  justify-content: center;
+}
+
+#apuestaRuleta,
+#numeroRuleta {
+  width: 300px;
+  border-color: rgb(237, 111, 111);
+}
+
+.botonRuleta {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  border: solid rgb(138, 10, 10);
+}
+
+table th {
+  color: black;
+  font-weight: bold;
+}
+
+table td {
+  color: black;
+}
+
+.container-resultado,
+.container-ganadorPerdedor {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.tabla {
+  height: 100px;
+}
+
+
+.container-imagenDado {
+margin: 50px;
+display: flex;
+justify-content: space-around;
+flex-direction: column;
+}
+
+.container-imagenDado img {
+  height: 250px;
+  width: 250px;
+  
+ 
+}
+
+.explicacion {
+  display:flex;
+  flex-direction: column;
+ 
+}
+
+h1 {
+  font-size: 4rem;
+
+}
+
+/* efecto borde */
+/* //fin efecto borde */
+
+h2 {
+  margin: 10px;
+  text-align: center;
+}
+
+
+
+
+.logo {
+  text-align: center;
+  height: 100px;
+
+
+}
+
+.logo b {
+  font: 400 5vh "Vibur";
+  color: rgb(232, 194, 194);
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+
+.logo b span {
+  animation: blink linear infinite 2s;
+}
+
+.logo b span:nth-of-type(2) {
+  animation: blink linear infinite 3s;
+}
+
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+
+  79% {
+    color: #333;
+  }
+
+  80% {
+
+    text-shadow: none;
+  }
+
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}

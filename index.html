@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Coder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container-titulo ">
+        <h1 class="logo"><b>Bie<span>nvenidos</span> al C<span>asi</span>no Coder</b></h1>
+    </div>
+
+    <h2 class="subtitulo">¡Multiplique el dinero que ganó con los cursos!</h2>
+
+    <section id="juegos">
+        <div id="juego1">
+            <div id="ruleta">
+                <img src="assets/ruletaGif.gif" alt="Ruleta Girando">
+            </div>
+            <div id="giraRuleta">
+                <input id="apuestaRuleta" type="number" min="0" max="1000000" placeholder="Ingrese Apuesta">
+                <input id="numeroRuleta" type="number" min="0" max="36" placeholder="Ingrese Número">
+                <button class="btn btn-danger botonRuleta" type="reset" id="botonRuleta" onclick="girarRuleta()">¡Gira
+                    la ruleta!</button>
+            </div>
+            <div class="container-resultado">
+                <h2 id="decirResultado"></h2>
+            </div>
+            <div class="container-ganadorPerdedor">
+                <h3 id="ganadorPerdedor"></h3>
+            </div>
+            <div class="container-historial">
+                <h3>Historial de apuestas</h3>
+                <table id="tabla" class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número apostado</th>
+                            <th scope="col">Dinero apostado</th>
+                            <th scope="col">Número sorteado</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+
+        <div id="juego2">
+            <div class="container-imagenDado">
+                <img src="assets/dado.png" alt="imagenDado">            
+ 
+            </div>
+               <div class="explicacion">
+                <h3>¿Te animás a jugar al Uno?</h3>
+                <p>Intenta llegar a 100 sin sacar el número 1. Si sale el 1 la cuenta volverá a 0.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
