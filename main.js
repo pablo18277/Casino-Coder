@@ -3,13 +3,13 @@ let numero
 let ganancia
 let historialApuestas = []
 let mensaje
+const botonRuleta = document.querySelector("#botonRuleta")
+const botonBorrarHistorial = document.querySelector("#borrarHistorial")
+
 
 //Función principal
 //Uso de While para chequear si apuesta y numero son números posibles
 function girarRuleta() {
-
-
-
 
     numero = Math.floor(Math.random() * 37)
     tomarApuesta(numero)
@@ -26,8 +26,6 @@ function girarRuleta() {
     }
 
 
-
-
 }
 
 //Declaro funciones secundarias
@@ -40,8 +38,8 @@ function tomarApuesta() {
             this.numeroSorteado = numeroSorteado
         }
     }
-    let apuestaTomar = document.getElementById("apuestaRuleta").value;
-    let numeroTomar = document.getElementById("numeroRuleta").value;
+    let apuestaTomar = document.querySelector("#apuestaRuleta").value;
+    let numeroTomar = document.querySelector("#numeroRuleta").value;
     numeroSorteado = numero
 
     nuevaApuesta = new Apuesta(numeroTomar, apuestaTomar, numero)
@@ -65,7 +63,7 @@ function revisionColor(numero) {
     return color;
 }
 
-function revisionGanancia() {
+function revisionGanancia(numero, dineroApostado) {
 
     ganancia = parseInt(nuevaApuesta.dineroApostado) * 36;
 
@@ -96,6 +94,19 @@ function decirGanadorPerdedor(mensaje) {
 
 function agregarHistorial() {
     historialApuestas.push(nuevaApuesta)
-    document.querySelector("#tabla").innerHTML += '<tbody><td>' + nuevaApuesta.numeroElegido + '</td> <td>' + nuevaApuesta.dineroApostado + '</td><td>' + nuevaApuesta.numeroSorteado + '</td></tbody>';
-    console.log(historialApuestas)
+    document.querySelector("#tabla").innerHTML += '<td class="table-dark">' + nuevaApuesta.numeroElegido + '</td> <td class="table-dark">' + nuevaApuesta.dineroApostado + '</td><td class="table-dark">' + nuevaApuesta.numeroSorteado + '</td>';
+    
 }
+
+function borrarHistorial() {
+    historialApuestas = []
+    document.querySelector("#tabla").innerHTML = '<tbody>' + "" +  '</tbody>'; 
+}
+
+//Agrego listener al botón de girar ruleta
+
+botonRuleta.addEventListener("click", girarRuleta)
+
+botonBorrarHistorial.addEventListener("click", borrarHistorial) 
+
+

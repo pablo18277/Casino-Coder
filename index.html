@@ -26,8 +26,9 @@
             <div id="giraRuleta">
                 <input id="apuestaRuleta" type="number" min="0" max="1000000" placeholder="Ingrese Apuesta">
                 <input id="numeroRuleta" type="number" min="0" max="36" placeholder="Ingrese Número">
-                <button class="btn btn-danger botonRuleta" type="reset" id="botonRuleta" onclick="girarRuleta()">¡Gira
+                <button class="btn btn-success botonRuleta" type="reset" id="botonRuleta">¡Gira
                     la ruleta!</button>
+                <button class="btn btn-danger botonBorrar" type="reset" id="borrarHistorial"> Borrar historial </button>
             </div>
             <div class="container-resultado">
                 <h2 id="decirResultado"></h2>
@@ -37,25 +38,27 @@
             </div>
             <div class="container-historial">
                 <h3>Historial de apuestas</h3>
-                <table id="tabla" class="table table-dark table-striped">
+                <table  class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Número apostado</th>
-                            <th scope="col">Dinero apostado</th>
-                            <th scope="col">Número sorteado</th>
+                            <th class="table-dark" scope="col">Número apostado</th>
+                            <th class="table-dark" scope="col">Dinero apostado</th>
+                            <th class="table-dark" scope="col">Número sorteado</th>
                         </tr>
                     </thead>
+                    <tbody class="table-dark" id="tabla">
 
+                    </tbody>
                 </table>
             </div>
         </div>
 
         <div id="juego2">
             <div class="container-imagenDado">
-                <img src="assets/dado.png" alt="imagenDado">            
- 
+                <img src="assets/dado.png" alt="imagenDado">
+
             </div>
-               <div class="explicacion">
+            <div class="explicacion">
                 <h3>¿Te animás a jugar al Uno?</h3>
                 <p>Intenta llegar a 100 sin sacar el número 1. Si sale el 1 la cuenta volverá a 0.</p>
             </div>

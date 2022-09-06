@@ -58,7 +58,15 @@ body {
   justify-content: center;
   text-align: center;
   font-weight: bold;
-  border: solid rgb(138, 10, 10);
+  border: solid rgb(5, 82, 28);
+}
+
+.botonBorrar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  border: solid rgb(156, 30, 23);
 }
 
 table th {
