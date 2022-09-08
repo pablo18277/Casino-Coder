@@ -3,9 +3,11 @@ let numero
 let ganancia
 let historialApuestas = []
 let mensaje
+let numeroDado
+let cuentaDado
+let historialUno = []
 const botonRuleta = document.querySelector("#botonRuleta")
 const botonBorrarHistorial = document.querySelector("#borrarHistorial")
-
 
 //Función principal
 //Uso de While para chequear si apuesta y numero son números posibles
@@ -109,4 +111,25 @@ botonRuleta.addEventListener("click", girarRuleta)
 
 botonBorrarHistorial.addEventListener("click", borrarHistorial) 
 
+//Juego UNO
 
+function comenzar() {
+
+}
+
+function tirarDado() {
+    numeroDado = Math.floor(Math.random() * 7)
+return numeroDado;
+}
+
+//Chequear siempre si sale el 1. SI sale hay que alertar derrota y mostrar hasta dónde llegó. 
+
+//Si no sale uno, sumar el numeroDado a Suma y agregar al array historialUno el objeto jugadaUno con número de tiro (i), numeroDado y suma hasta ese momento.
+
+function plantarse()
+
+//Detiene el juego. Hace un alert con el objeto de la jugadaUno. Borra el array y lleva la suma a 0
+
+function reinicio ()
+
+// Borra el array y lleva la suma a 0

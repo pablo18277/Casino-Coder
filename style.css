@@ -25,7 +25,8 @@ body {
 }
 
 #juego1 {
-  margin-left: 50px;
+  margin-left: 10px;
+  width: 50%;
 
 }
 
@@ -92,24 +93,57 @@ table td {
 
 
 .container-imagenDado {
-margin: 50px;
+margin: 30px;
 display: flex;
 justify-content: space-around;
-flex-direction: column;
 }
 
 .container-imagenDado img {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
+  text-align: center;
   
- 
-}
+  
+ }
+
+ .containerSuma, .tiroActual, .containerNumeroTiro  {
+  display: flex;
+  justify-content: space-around;
+ }
 
 .explicacion {
   display:flex;
   flex-direction: column;
  
 }
+
+.containerBotonDado {
+  display: flex;
+  justify-content: center;
+}
+
+.botonUno1 {
+  font-weight: bold;
+  border: solid rgb(17, 17, 140);
+  border-right: none;
+  
+}
+.botonUno2, .botonUno3 {
+  font-weight: bold;
+  border: solid rgb(17, 17, 140);
+  border-right: none;
+  border-left: none;
+  }
+
+  .botonUno4 {
+    font-weight: bold;
+    border: solid rgb(17, 17, 140);
+    border-left: none;
+  }
+
+  .tituloUno {
+    text-align: center;
+  }
 
 h1 {
   font-size: 4rem;
@@ -124,12 +158,15 @@ h2 {
   text-align: center;
 }
 
+h5 {
+  font-weight: lighter;
+}
 
 
 
 .logo {
   text-align: center;
-  height: 100px;
+  height: 80px;
 
 
 }
