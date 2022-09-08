@@ -113,27 +113,27 @@ botonBorrarHistorial.addEventListener("click", borrarHistorial)
 
 //Juego UNO
 
-function comenzar() {
+// function comenzar() {
 
-}
+// }
 
-function tirarDado() {
-    numeroDado = Math.floor(Math.random() * 7)
-return numeroDado;
-}
+// function tirarDado() {
+//     numeroDado = Math.floor(Math.random() * 7)
+// return numeroDado;
+// }
 
 //Chequear siempre si sale el 1. SI sale hay que alertar derrota y mostrar hasta dónde llegó. 
 
 //Si no sale uno, sumar el numeroDado a Suma y agregar al array historialUno el objeto jugadaUno con número de tiro (i), numeroDado y suma hasta ese momento.
 
-function plantarse() {
+// function plantarse() {
 
-}
+// }
 
 //Detiene el juego. Hace un alert con el objeto de la jugadaUno. Borra el array y lleva la suma a 0
 
-function reinicio() {
-    
-}
+// function reinicio() {
+
+// }
 
 // Borra el array y lleva la suma a 0
