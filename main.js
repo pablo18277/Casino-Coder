@@ -126,10 +126,14 @@ return numeroDado;
 
 //Si no sale uno, sumar el numeroDado a Suma y agregar al array historialUno el objeto jugadaUno con número de tiro (i), numeroDado y suma hasta ese momento.
 
-function plantarse()
+function plantarse() {
+
+}
 
 //Detiene el juego. Hace un alert con el objeto de la jugadaUno. Borra el array y lleva la suma a 0
 
-function reinicio ()
+function reinicio() {
+    
+}
 
 // Borra el array y lleva la suma a 0
