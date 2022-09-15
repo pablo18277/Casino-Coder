@@ -106,9 +106,13 @@ justify-content: space-around;
   
  }
 
- .containerSuma, .tiroActual, .containerNumeroTiro  {
+ .containerSuma, .tiroActual, .containerNumeroTiro, .containerRecordActual  {
   display: flex;
   justify-content: space-around;
+ }
+
+ .containerRecordActual {
+  color: rgb(234, 255, 8);
  }
 
 .explicacion {

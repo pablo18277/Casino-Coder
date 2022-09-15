@@ -4,10 +4,15 @@ let ganancia
 let historialApuestas = []
 let mensaje
 let numeroDado
-let cuentaDado
+let cuentaDado = 0
 let historialUno = []
+let numeroDeTiro = 0
 const botonRuleta = document.querySelector("#botonRuleta")
 const botonBorrarHistorial = document.querySelector("#borrarHistorial")
+const botonComenzar = document.querySelector("#comenzar")
+const botonTirarDado = document.querySelector("#tirarDado")
+const botonPlantarse = document.querySelector("#plantarse")
+const botonReiniciar = document.querySelector("#reiniciar")
 
 //Función principal
 //Uso de While para chequear si apuesta y numero son números posibles
@@ -97,43 +102,116 @@ function decirGanadorPerdedor(mensaje) {
 function agregarHistorial() {
     historialApuestas.push(nuevaApuesta)
     document.querySelector("#tabla").innerHTML += '<td class="table-dark">' + nuevaApuesta.numeroElegido + '</td> <td class="table-dark">' + nuevaApuesta.dineroApostado + '</td><td class="table-dark">' + nuevaApuesta.numeroSorteado + '</td>';
-    
+
 }
 
 function borrarHistorial() {
     historialApuestas = []
-    document.querySelector("#tabla").innerHTML = '<tbody>' + "" +  '</tbody>'; 
+    document.querySelector("#tabla").innerHTML = '<tbody>' + "" + '</tbody>';
 }
 
-//Agrego listener al botón de girar ruleta
+
 
 botonRuleta.addEventListener("click", girarRuleta)
 
-botonBorrarHistorial.addEventListener("click", borrarHistorial) 
+botonBorrarHistorial.addEventListener("click", borrarHistorial)
+
 
 //Juego UNO
 
-// function comenzar() {
+//MUESTRA RECORD CON LS
+let recordEnLocalStorage = localStorage.getItem("Record");
+    recordParseado = JSON.parse(recordEnLocalStorage);
+    document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
 
-// }
 
-// function tirarDado() {
-//     numeroDado = Math.floor(Math.random() * 7)
-// return numeroDado;
-// }
+class jugadaUno {
+    constructor(numeroDeTiroUno, cuentaUno) {
+        this.numeroDeTiroUno = numeroDeTiroUno
+        this.cuentaUno = cuentaUno
+    }
+}
 
-//Chequear siempre si sale el 1. SI sale hay que alertar derrota y mostrar hasta dónde llegó. 
 
-//Si no sale uno, sumar el numeroDado a Suma y agregar al array historialUno el objeto jugadaUno con número de tiro (i), numeroDado y suma hasta ese momento.
+botonComenzar.addEventListener("click", comenzar)
+botonTirarDado.addEventListener("click", tirarDado)
+botonPlantarse.addEventListener("click", plantarse)
+botonReiniciar.addEventListener("click", reiniciar)
 
-// function plantarse() {
+function tirarDado() {
+    numeroDado = Math.floor(Math.random() * 6) + 1;
+    if (numeroDado === 1) {
+        alert("Salió el 1! A empezar de nuevo!")
+        reiniciar()
+    } else {
 
-// }
+        document.querySelector("#tiroActual").innerHTML = numeroDado
+        numeroDeTiro++
+        document.querySelector("#numeroDeTiro").innerHTML = numeroDeTiro
+        cuentaDado = numeroDado + cuentaDado
+        if (cuentaDado >= 100) {
+            alert("GANASTE! Felicitaciones!")
+            cuentaDado = 100
+            document.querySelector("#cuentaDado").innerHTML = cuentaDado
+            plantarse()
 
-//Detiene el juego. Hace un alert con el objeto de la jugadaUno. Borra el array y lleva la suma a 0
+        } else {
 
-// function reinicio() {
+            document.querySelector("#cuentaDado").innerHTML = cuentaDado
+        }
+    }
 
-// }
+}
 
-// Borra el array y lleva la suma a 0
+function comenzar() {
+    reiniciar()
+    borrarHistorialUno()
+}
+
+
+
+function agregarHistorialUno(jugadaActual) {
+    historialUno.push(jugadaActual)
+    document.querySelector("#tablaUno").innerHTML += '<td class="table-dark">' + jugadaActual.numeroDeTiroUno + '</td> <td class="table-dark">' + jugadaActual.cuentaUno + '</td>';
+
+}
+
+function plantarse() {
+
+    let numeroDeTiroUno = document.querySelector("#numeroDeTiro").innerHTML;
+    let cuentaUno = document.querySelector("#cuentaDado").innerHTML;
+    jugadaActual = new jugadaUno(numeroDeTiroUno, cuentaUno);
+    agregarHistorialUno(jugadaActual);
+    reiniciar()
+    revisarRecord()
+    
+}
+
+function reiniciar() {
+    document.querySelector("#tiroActual").innerHTML = "-"
+    document.querySelector("#numeroDeTiro").innerHTML = "-"
+    document.querySelector("#cuentaDado").innerHTML = "-"
+    cuentaDado = 0
+    numeroDeTiro = 0
+
+
+}
+
+function borrarHistorialUno() {
+    historialUno = []
+    document.querySelector("#tablaUno").innerHTML = '<tbody>' + "" + '</tbody>';
+}
+
+function revisarRecord() {
+
+//if (jugadaActual.cuentaUno >= recordParseado.cuentaUno && jugadaActual.numeroDeTiroUno < recordParseado.numeroDeTiroUno) {
+
+    const recordJugada = JSON.stringify(jugadaActual);
+    localStorage.setItem("Record", recordJugada);
+    const recordEnLocalStorage = localStorage.getItem("Record");
+    recordParseado = JSON.parse(recordEnLocalStorage);
+    
+    
+            document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
+        }
+    
