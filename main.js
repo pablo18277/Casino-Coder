@@ -119,10 +119,14 @@ botonBorrarHistorial.addEventListener("click", borrarHistorial)
 
 //Juego UNO
 
+// Si no hay LS que muestre 0 y 0
+
+
+
 //MUESTRA RECORD CON LS
-let recordEnLocalStorage = localStorage.getItem("Record");
-    recordParseado = JSON.parse(recordEnLocalStorage);
-    document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
+    // recordEnLocalStorage = localStorage.getItem("Record");
+    // recordParseado = JSON.parse(recordEnLocalStorage);
+    // document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
 
 
 class jugadaUno {
