@@ -4,6 +4,7 @@ let ganancia
 let historialApuestas = []
 let mensaje
 let numeroDado
+let recordParseado
 let cuentaDado = 0
 let historialUno = []
 let numeroDeTiro = 0
@@ -15,13 +16,13 @@ const botonPlantarse = document.querySelector("#plantarse")
 const botonReiniciar = document.querySelector("#reiniciar")
 
 //Función principal
-//Uso de While para chequear si apuesta y numero son números posibles
+
 function girarRuleta() {
 
     numero = Math.floor(Math.random() * 37)
     tomarApuesta(numero)
 
-    if (((!isNaN(nuevaApuesta.dineroApostado)) && nuevaApuesta.dineroApostado > 0) && (!isNaN(nuevaApuesta.numeroElegido) && nuevaApuesta.numeroElegido >= 0 || numeroTomar <= 36)) {
+    if (((!isNaN(nuevaApuesta.dineroApostado)) && nuevaApuesta.dineroApostado > 0) && (!isNaN(nuevaApuesta.numeroElegido) && nuevaApuesta.numeroElegido >= 0 && nuevaApuesta.numeroElegido <= 36)) {
         borrarResultado()
         revisionColor(numero)
         decirResultado()
@@ -29,9 +30,17 @@ function girarRuleta() {
         decirGanadorPerdedor(mensaje)
         agregarHistorial()
     } else {
-        alert("Ingrese una apuesta válida")
-    }
 
+        Toastify({
+            text: "Ingrese una apuesta válida",
+            className: "info",
+            duration: 2000,
+            style: {
+                background: "linear-gradient(to right, #ec4206, #8b3918)",
+            }
+        }).showToast();
+
+    }
 
 }
 
@@ -76,11 +85,27 @@ function revisionGanancia(numero, dineroApostado) {
 
     if (nuevaApuesta.numeroElegido == numero) {
         mensaje = "¡Has ganado! Recibirás " + ganancia + " dólares."
+        Toastify({
+            text: "¡Llueven dólares!",
+            className: "info",
+            duration: 2000,
+            style: {
+                background: "linear-gradient(to right, #22240a, #13f14a)",
+            }
+        }).showToast();
 
 
 
     } else {
         mensaje = "Has perdido :-( Intenta de nuevo!"
+        Toastify({
+            text: "¡Intenta de nuevo!",
+            className: "info",
+            duration: 2000,
+            style: {
+                background: "linear-gradient(to right, #a60fa3, #48825b)",
+            }
+        }).showToast();
 
 
     }
@@ -110,25 +135,19 @@ function borrarHistorial() {
     document.querySelector("#tabla").innerHTML = '<tbody>' + "" + '</tbody>';
 }
 
-
-
 botonRuleta.addEventListener("click", girarRuleta)
 
 botonBorrarHistorial.addEventListener("click", borrarHistorial)
 
-
 //Juego UNO
 
-// Si no hay LS que muestre 0 y 0
+//botones
+botonComenzar.addEventListener("click", comenzar)
+botonTirarDado.addEventListener("click", tirarDado)
+botonPlantarse.addEventListener("click", plantarse)
+botonReiniciar.addEventListener("click", reiniciar)
 
-
-
-//MUESTRA RECORD CON LS
-    // recordEnLocalStorage = localStorage.getItem("Record");
-    // recordParseado = JSON.parse(recordEnLocalStorage);
-    // document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
-
-
+//Declaro clase
 class jugadaUno {
     constructor(numeroDeTiroUno, cuentaUno) {
         this.numeroDeTiroUno = numeroDeTiroUno
@@ -136,16 +155,33 @@ class jugadaUno {
     }
 }
 
+// Buscar record en LS y parse
 
-botonComenzar.addEventListener("click", comenzar)
-botonTirarDado.addEventListener("click", tirarDado)
-botonPlantarse.addEventListener("click", plantarse)
-botonReiniciar.addEventListener("click", reiniciar)
+recordEnLocalStorage = localStorage.getItem("Record");
+recordParseado = JSON.parse(recordEnLocalStorage);
+
+
+//Si no hay LS que muestre vacío. Sino que muestre record de LS
+if (recordParseado == null) {
+    recordParseado = new jugadaUno(0, 0)
+    document.querySelector("#recordActual").innerHTML = "No hay récord"
+} else {
+
+    document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
+}
+
+//Funciones
 
 function tirarDado() {
     numeroDado = Math.floor(Math.random() * 6) + 1;
     if (numeroDado === 1) {
-        alert("Salió el 1! A empezar de nuevo!")
+        Swal.fire({
+            icon: 'error',
+            title: '¡Salió el 1!',
+            text: 'Tendrás que empezar de nuevo',
+            footer: '¿Podrá alguien llegar a 100?'
+        })
+
         reiniciar()
     } else {
 
@@ -154,7 +190,12 @@ function tirarDado() {
         document.querySelector("#numeroDeTiro").innerHTML = numeroDeTiro
         cuentaDado = numeroDado + cuentaDado
         if (cuentaDado >= 100) {
-            alert("GANASTE! Felicitaciones!")
+            Swal.fire(
+                '¡Felicitaciones!',
+                'Llegaste a 100!',
+                'success'
+            )
+
             cuentaDado = 100
             document.querySelector("#cuentaDado").innerHTML = cuentaDado
             plantarse()
@@ -172,8 +213,6 @@ function comenzar() {
     borrarHistorialUno()
 }
 
-
-
 function agregarHistorialUno(jugadaActual) {
     historialUno.push(jugadaActual)
     document.querySelector("#tablaUno").innerHTML += '<td class="table-dark">' + jugadaActual.numeroDeTiroUno + '</td> <td class="table-dark">' + jugadaActual.cuentaUno + '</td>';
@@ -186,9 +225,36 @@ function plantarse() {
     let cuentaUno = document.querySelector("#cuentaDado").innerHTML;
     jugadaActual = new jugadaUno(numeroDeTiroUno, cuentaUno);
     agregarHistorialUno(jugadaActual);
-    reiniciar()
     revisarRecord()
-    
+    reiniciar()
+
+}
+
+function revisarRecord() {
+
+    if ((parseInt(jugadaActual.cuentaUno)) > (parseInt(recordParseado.cuentaUno))) {
+
+        //Actualiza record
+        const recordJugada = JSON.stringify(jugadaActual);
+        localStorage.setItem("Record", recordJugada);
+        const recordEnLocalStorage = localStorage.getItem("Record");
+        recordParseado = JSON.parse(recordEnLocalStorage);
+        Toastify({
+            text: "¡Nuevo Récord!",
+            className: "info",
+            duration: 2000,
+            style: {
+                background: "linear-gradient(to right, #0f56a6, #13b9b4)",
+            }
+        }).showToast();
+
+        document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
+
+    }
+    //Si no supera récord sigue
+    else {
+        return console.log("No se cumple")
+    }
 }
 
 function reiniciar() {
@@ -204,18 +270,6 @@ function reiniciar() {
 function borrarHistorialUno() {
     historialUno = []
     document.querySelector("#tablaUno").innerHTML = '<tbody>' + "" + '</tbody>';
+    recordParseado = new jugadaUno(0, 0)
+    document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
 }
-
-function revisarRecord() {
-
-//if (jugadaActual.cuentaUno >= recordParseado.cuentaUno && jugadaActual.numeroDeTiroUno < recordParseado.numeroDeTiroUno) {
-
-    const recordJugada = JSON.stringify(jugadaActual);
-    localStorage.setItem("Record", recordJugada);
-    const recordEnLocalStorage = localStorage.getItem("Record");
-    recordParseado = JSON.parse(recordEnLocalStorage);
-    
-    
-            document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
-        }
-    

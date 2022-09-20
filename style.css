@@ -16,6 +16,9 @@ body {
 
 }
 
+.toastify {
+  font-weight: bold;
+}
 
 
 #juegos {
@@ -46,6 +49,7 @@ body {
 #giraRuleta {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
 #apuestaRuleta,
@@ -55,17 +59,12 @@ body {
 }
 
 .botonRuleta {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-weight: bold;
-  border: solid rgb(5, 82, 28);
+ font-weight: bold;
+ border: solid rgb(5, 82, 28);
 }
 
 .botonBorrar {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  
   font-weight: bold;
   border: solid rgb(156, 30, 23);
 }
