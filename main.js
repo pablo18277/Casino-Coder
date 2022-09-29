@@ -8,6 +8,11 @@ let recordParseado
 let cuentaDado = 0
 let historialUno = []
 let numeroDeTiro = 0
+let pokemon1 = ""
+let pokemon2 = ""
+let pokemon3 = ""
+const botonJackpot = document.querySelector("#botonJackpot")
+const jackpot = document.querySelector("#jackpotContainer")
 const botonRuleta = document.querySelector("#botonRuleta")
 const botonBorrarHistorial = document.querySelector("#borrarHistorial")
 const botonComenzar = document.querySelector("#comenzar")
@@ -253,7 +258,7 @@ function revisarRecord() {
     }
     //Si no supera récord sigue
     else {
-        return console.log("No se cumple")
+        return 1
     }
 }
 
@@ -272,4 +277,149 @@ function borrarHistorialUno() {
     document.querySelector("#tablaUno").innerHTML = '<tbody>' + "" + '</tbody>';
     recordParseado = new jugadaUno(0, 0)
     document.querySelector("#recordActual").innerHTML = recordParseado.cuentaUno + " en " + recordParseado.numeroDeTiroUno + " tiros"
+}
+
+
+//POKEMON JACKPOT
+
+//Botón para hacer click y que comience el juego
+
+botonJackpot.addEventListener("click", jackpotStart)
+
+// Buscar el pokemon en la API
+
+
+ function agregarPokemon1(pokemon) {
+
+    document.querySelector(".containerImagen1").innerHTML = "";
+    const imagen1 = document.createElement("img")
+    imagen1.src = pokemon.sprites.front_default
+
+    containerImagen1 = document.querySelector(".containerImagen1")
+    containerImagen1.appendChild(imagen1)
+
+    pokemon1 = {
+        nombre: pokemon.name,
+        especie: pokemon.types[0].type.name
+    }
+    
+    
+}
+
+function agregarPokemon2(pokemon) {
+
+    document.querySelector(".containerImagen2").innerHTML = "";
+    const imagen2 = document.createElement("img")
+    imagen2.src = pokemon.sprites.front_default
+
+    containerImagen2 = document.querySelector(".containerImagen2")
+    containerImagen2.appendChild(imagen2)
+
+    pokemon2 = {
+        nombre: pokemon.name,
+        especie: pokemon.types[0].type.name
+    }
+
+
+    
+
+}
+
+function agregarPokemon3(pokemon) {
+
+    document.querySelector(".containerImagen3").innerHTML = "";
+    const imagen3 = document.createElement("img")
+    imagen3.src = pokemon.sprites.front_default
+
+    containerImagen3 = document.querySelector(".containerImagen3")
+    containerImagen3.appendChild(imagen3)
+
+    pokemon3 = {
+        nombre: pokemon.name,
+        especie: pokemon.types[0].type.name
+    }
+    revisarJackpot()
+
+}
+
+ function buscarPokemon1(numeroPokemon) {
+    numeroPokemon = Math.floor(Math.random() * 150 + 1)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`)
+        .then((res) => res.json())
+        .then((data) => {
+            agregarPokemon1(data)
+        })
+
+    
+}
+
+function buscarPokemon2(numeroPokemon) {
+    numeroPokemon = Math.floor(Math.random() * 150 + 1)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`)
+        .then((res) => res.json())
+        .then((data) => {
+            agregarPokemon2(data)
+        })
+
+}
+
+function buscarPokemon3(numeroPokemon) {
+    numeroPokemon = Math.floor(Math.random() * 150 + 1)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`)
+        .then((res) => res.json())
+        .then((data) => {
+            agregarPokemon3(data)
+        })
+
+
+}
+
+function revisarJackpot() {
+   if (pokemon1.nombre == pokemon2.nombre && pokemon2.nombre == pokemon3.nombre) {
+        Toastify({
+        text: "¡3 iguales! ¡GANASTE!",
+        className: "info",
+        duration: 2000,
+        style: {
+            background: "linear-gradient(to right, #22240a, #13f14a)",
+        }
+        }).showToast()
+   }
+   else if (pokemon1.especie == pokemon2.especie && pokemon2.especie == pokemon3.especie) {
+
+    Toastify({
+        text: "¡Misma especie! ¡Felicitaciones!",
+        className: "info",
+        duration: 3000,
+        style: {
+            background: "linear-gradient(to right, #22240a, #13f14a)",
+        }
+    }).showToast();
+   }
+
+   else {
+    Toastify({
+        text: "¡Nada coincide! ¡Sigue jugando!",
+        className: "info",
+        duration: 3000,
+        style: {
+            background: "linear-gradient(to right, #ec4206, #8b3918)",
+        }
+    }).showToast();
+   }
+
+          
+    
+    
+    
+    
+
+}
+
+async function jackpotStart(pokemon1, pokemon2, pokemon3) {
+
+    buscarPokemon1(pokemon1)
+    buscarPokemon2(pokemon2)
+    buscarPokemon3(pokemon3)
+    
 }
