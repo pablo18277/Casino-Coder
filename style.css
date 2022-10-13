@@ -1,7 +1,27 @@
 body {
   /* background-color: rgba(11, 82, 11, 0.893); */
-  background-image: linear-gradient(to right, rgba(8, 30, 8, 0.893), rgba(60, 179, 60, 0.93));
+  background-image: linear-gradient(to right, rgba(91, 185, 91, 0.8), rgb(5, 121, 5));
   color: black;
+}
+
+i {
+  position: fixed;
+  margin-top: 20px;
+  margin-left: 20px;
+  top: 0;
+  left: 0;
+  font-size: 5vh;
+}
+
+.fa {
+ 
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: rgb(213, 213, 230);
+  
 }
 
 .container-titulo {
@@ -11,7 +31,7 @@ body {
 }
 
 .subtitulo {
-  color: rgb(73, 8, 8);
+  color: rgb(131, 11, 11);
   text-shadow: #ff4444;
 
 }
@@ -26,21 +46,15 @@ body {
   align-items: flex-start;
   width: 100%;
   gap: 5vw;
-  
-  
-  
+
 }
 
 
-#juego1 {
-  /* margin-left: 10px; */
+#juego1,
+#juego2 {
+
   width: 50%;
 
-}
-
-#juego2 {
-  /* margin-right: 10px; */
-  width: 50%
 }
 
 #ruleta {
@@ -53,34 +67,47 @@ body {
 #ruleta img {
   display: flex;
   align-items: center;
-  border-radius: 50% 50% 50% 50%;
+  border-radius: 50%;
 }
 
 #giraRuleta {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 #apuestaRuleta,
 #numeroRuleta {
-  width: 5vw;
+  width: 7vw;
+  height: 6vh;
   border-color: rgb(237, 111, 111);
 }
 
 .botonRuleta {
- font-weight: bold;
- border: solid rgb(5, 82, 28);
- width: 8vw;
+  font-weight: bold;
+  border: solid rgb(5, 82, 28);
+  width: 10vw;
+  height: 6vh;
 
 }
 
 .botonBorrar {
-  
+
   font-weight: bold;
-  border: solid rgb(156, 30, 23);
-  width: 8vw;
+  border: solid rgb(79, 8, 5);
+  width: 10vw;
+  height: 6vh;
 }
+
+.buttontext, .buttontext1 {
+  width: 10vw;
+  overflow: hidden;
+  white-space: nowrap;
+  /* display: block; */
+  text-overflow: ellipsis;
+}​
+
+
 
 table th {
   color: black;
@@ -105,32 +132,35 @@ table td {
 
 
 .container-imagenDado {
-margin: 30px;
-display: flex;
-justify-content: space-around;
+  margin: 30px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .container-imagenDado img {
   height: 200px;
   width: 200px;
   text-align: center;
-  
-  
- }
 
- .containerSuma, .tiroActual, .containerNumeroTiro, .containerRecordActual  {
+
+}
+
+.containerSuma,
+.tiroActual,
+.containerNumeroTiro,
+.containerRecordActual {
   display: flex;
   justify-content: space-around;
- }
+}
 
- .containerRecordActual {
+.containerRecordActual {
   color: rgb(234, 255, 8);
- }
+}
 
 .explicacion {
-  display:flex;
+  display: flex;
   flex-direction: column;
- 
+
 }
 
 .containerBotonDado {
@@ -142,24 +172,26 @@ justify-content: space-around;
   font-weight: bold;
   border: solid rgb(17, 17, 140);
   border-right: none;
-  
+
 }
-.botonUno2, .botonUno3 {
+
+.botonUno2,
+.botonUno3 {
   font-weight: bold;
   border: solid rgb(17, 17, 140);
   border-right: none;
   border-left: none;
-  }
+}
 
-  .botonUno4 {
-    font-weight: bold;
-    border: solid rgb(17, 17, 140);
-    border-left: none;
-  }
+.botonUno4 {
+  font-weight: bold;
+  border: solid rgb(17, 17, 140);
+  border-left: none;
+}
 
-  .tituloUno {
-    text-align: center;
-  }
+.tituloUno {
+  text-align: center;
+}
 
 h1 {
   font-size: 4rem;
@@ -244,28 +276,39 @@ h5 {
 
 #jackpotContainer {
   display: flex;
-  
-
-  
+  height: 8vh;
 }
+
+
 .juego3 {
   display: flex;
   justify-content: space-around;
-}
-.jackpot1, .jackpot2, .jackpot3 {
-  border: solid white;
-  width: 20vw;
-  height: 10vh;;
+  margin-bottom: 1vh;
 }
 
-.containerImagen1, .containerImagen2, .containerImagen3 {
+.jackpot1,
+.jackpot2,
+.jackpot3 {
+  border: solid rgb(212, 40, 40);
+  width: 8vw;
+  height: 16vh;
+  border-radius: 50%;
+  display: flex;
+}
+
+.containerImagen1,
+.containerImagen2,
+.containerImagen3 {
   /* border: solid rgb(154, 60, 60); */
   display: flex;
   justify-content: center;
-  
+
+  /* max-height: max-content;
+  max-width: max-content; */
+
 }
 
 .imagen1 {
-  width:20vw;
+  /* width:10vw; */
 
 }

@@ -11,6 +11,8 @@ let numeroDeTiro = 0
 let pokemon1 = ""
 let pokemon2 = ""
 let pokemon3 = ""
+const audio = document.querySelector("#audio")
+const botonMusica = document.querySelector("#musica")
 const botonJackpot = document.querySelector("#botonJackpot")
 const jackpot = document.querySelector("#jackpotContainer")
 const botonRuleta = document.querySelector("#botonRuleta")
@@ -19,6 +21,16 @@ const botonComenzar = document.querySelector("#comenzar")
 const botonTirarDado = document.querySelector("#tirarDado")
 const botonPlantarse = document.querySelector("#plantarse")
 const botonReiniciar = document.querySelector("#reiniciar")
+
+//Musica
+botonMusica.addEventListener("click", musica)
+audio.volume = 0.4;
+function musica() {
+    botonMusica.classList.toggle("fa-volume-xmark");
+    audio.paused ? audio.play() : audio.pause();
+    
+      }
+
 
 //Función principal
 
